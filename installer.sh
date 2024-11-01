@@ -24,9 +24,21 @@ if [ "" = "$PKG_OK" ]; then
   echo "`gum` package is Installed"
 fi
 
+# Checking if `gum` is installed
+REQUIRED_PKG2="jq"
+PKG_OK2=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG2|grep "install ok installed")
+
+# if not installed install it
+if [ "" = "$PKG_OK2" ]; then
+  echo "Installing `jq` package..."
+  sudo apt-get install jq > /dev/null
+  echo "`jq` package is Installed"
+fi
+
+# Finaling the installation 
 echo 'Instaling the latest package of the `meg-cli`'
-#wget https://tools.megarthur.dev/release -P /usr/local/megcli/bin.sh
-# ln -s /usr/local/megcli/bin.sh /usr/local/bin/megtool
+wget https://tools.megarthur.dev/release -P /usr/local/megcli/release.sh > /dev/null
+ln -s /usr/local/megcli/release.sh /usr/local/bin/megtool
 clear
 #echo 'Installed'
 gum style \
