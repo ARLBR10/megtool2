@@ -1,3 +1,5 @@
+# Code Avaliable at https://github.com/ARLBR10/megtool
+
 version="1.0"
 madeby="megarthur"
 
